@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_shizhan/app_init.dart';
+import 'package:flutter_shizhan/http/http_manager.dart';
 import 'package:flutter_shizhan/tab_navigation.dart';
 
 //实战
@@ -24,6 +25,13 @@ class MyApp extends StatelessWidget {
     return FutureBuilder(
         future: AppInit.init(), // 获取数据的方法
         builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+
+          //TODO 网络请求试一试
+          HttpManager.getData("http://baobab.kaiyanapp.com/api/v2/feed?num=1",
+              success: (result) {
+            print(result);
+          });
+
           //打印状态
           print(snapshot.connectionState);
           var widget = snapshot.connectionState == ConnectionState.done

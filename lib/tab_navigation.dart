@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/config/string.dart';
 import 'package:flutter_shizhan/utils/toast_util.dart';
 
-//TODO 快捷键 sful
+//TODO 快捷键 stful
 class TabNavigation extends StatefulWidget {
   const TabNavigation({Key key}) : super(key: key);
 
