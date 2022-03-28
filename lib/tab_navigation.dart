@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/config/string.dart';
 import 'package:flutter_shizhan/utils/toast_util.dart';
@@ -37,16 +36,16 @@ class _TabNavigation extends State<TabNavigation> {
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            _currentBody = Container(
+            Container(
               color: Colors.blue,
             ),
-            _currentBody = Container(
+            Container(
               color: Colors.brown,
             ),
-            _currentBody = Container(
+            Container(
               color: Colors.orange,
             ),
-            _currentBody = Container(
+            Container(
               color: Colors.red,
             ),
           ],
@@ -91,33 +90,33 @@ class _TabNavigation extends State<TabNavigation> {
   }
 
   //实战1
-  // _onTap(int index) {
-  //   switch (index) {
-  //     case 0:
-  //       _currentBody = Container(
-  //         color: Colors.blue,
-  //       );
-  //       break;
-  //     case 1:
-  //       _currentBody = Container(
-  //         color: Colors.brown,
-  //       );
-  //       break;
-  //     case 2:
-  //       _currentBody = Container(
-  //         color: Colors.orange,
-  //       );
-  //       break;
-  //     case 3:
-  //       _currentBody = Container(
-  //         color: Colors.red,
-  //       );
-  //       break;
-  //   }
-  //   setState(() {
-  //     _currentIndex = index;
-  //   });
-  // }
+  _onTap(int index) {
+    switch (index) {
+      case 0:
+        _currentBody = Container(
+          color: Colors.blue,
+        );
+        break;
+      case 1:
+        _currentBody = Container(
+          color: Colors.brown,
+        );
+        break;
+      case 2:
+        _currentBody = Container(
+          color: Colors.orange,
+        );
+        break;
+      case 3:
+        _currentBody = Container(
+          color: Colors.red,
+        );
+        break;
+    }
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   List<BottomNavigationBarItem> _items() {
     return [

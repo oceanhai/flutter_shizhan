@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
@@ -17,7 +17,7 @@ class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ProvideWidgetState();
+  State<StatefulWidget> createState() => _ProvideWidgetState<T>();
 }
 
 class _ProvideWidgetState<T extends ChangeNotifier>
