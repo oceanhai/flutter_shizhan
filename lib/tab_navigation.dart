@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/config/string.dart';
 import 'package:flutter_shizhan/utils/toast_util.dart';
+import 'package:flutter_shizhan/viewmodel/tab_navigation_viewmodel.dart';
+import 'package:flutter_shizhan/widget/provider_widget.dart';
 
 //TODO 快捷键 stful
 class TabNavigation extends StatefulWidget {
@@ -12,15 +14,17 @@ class TabNavigation extends StatefulWidget {
 }
 
 class _TabNavigation extends State<TabNavigation> {
-
   //点击返回 时间
   DateTime lastTime;
 
-  //主体
+  //主体 实战1
   Widget _currentBody = Container(color: Colors.blue);
 
-  //导航位置
+  //导航位置 实战1
   int _currentIndex = 0;
+
+  //pageview 需要PageController 实战2
+  PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,38 +32,92 @@ class _TabNavigation extends State<TabNavigation> {
     return WillPopScope(
       onWillPop: _onWillPop, //两次确认退出app
       child: Scaffold(
-        body: _currentBody,
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          type: BottomNavigationBarType.fixed,//导航样式 固定
-          selectedItemColor: Color(0xff000000),//字体 选中颜色
-          unselectedItemColor: Color(0xff9a9a9a),//字体 未选中颜色
-          items: _items(),//导航
-          onTap: _onTap,//点击 切换导航页
+        // body: _currentBody,//实战1
+        body: PageView(
+          controller: _pageController,
+          physics: NeverScrollableScrollPhysics(),
+          children: [
+            _currentBody = Container(
+              color: Colors.blue,
+            ),
+            _currentBody = Container(
+              color: Colors.brown,
+            ),
+            _currentBody = Container(
+              color: Colors.orange,
+            ),
+            _currentBody = Container(
+              color: Colors.red,
+            ),
+          ],
+        ), //实战2
+        //实战1
+        // bottomNavigationBar: BottomNavigationBar(
+        //   currentIndex: _currentIndex,
+        //   type: BottomNavigationBarType.fixed,
+        //   //导航样式 固定
+        //   selectedItemColor: Color(0xff000000),
+        //   //字体 选中颜色
+        //   unselectedItemColor: Color(0xff9a9a9a),
+        //   //字体 未选中颜色
+        //   items: _items(),
+        //   //导航
+        //   onTap: _onTap, //点击 切换导航页
+        // ),
+        bottomNavigationBar: ProviderWidget<TabNavigationViewModel>(
+          model: TabNavigationViewModel(),
+          builder: (context, model, child) {
+            return BottomNavigationBar(
+              currentIndex: model.currentIndex,
+              //导航样式 固定
+              type: BottomNavigationBarType.fixed,
+              //字体 选中颜色
+              selectedItemColor: Color(0xff000000),
+              //字体 未选中颜色
+              unselectedItemColor: Color(0xff9a9a9a),
+              items: _items(),
+              //导航 点击
+              onTap: (index) {
+                if (model.currentIndex != index) {
+                  _pageController.jumpToPage(index);
+                  model.changeBottomTabIndex(index);
+                }
+              }, //点击 切换导航页
+            );
+          },
         ),
       ),
     );
   }
 
-  _onTap(int index){
-    switch(index){
-      case 0:
-        _currentBody = Container(color: Colors.blue,);
-        break;
-      case 1:
-        _currentBody = Container(color: Colors.brown,);
-        break;
-      case 2:
-        _currentBody = Container(color: Colors.orange,);
-        break;
-      case 3:
-        _currentBody = Container(color: Colors.red,);
-        break;
-    }
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+  //实战1
+  // _onTap(int index) {
+  //   switch (index) {
+  //     case 0:
+  //       _currentBody = Container(
+  //         color: Colors.blue,
+  //       );
+  //       break;
+  //     case 1:
+  //       _currentBody = Container(
+  //         color: Colors.brown,
+  //       );
+  //       break;
+  //     case 2:
+  //       _currentBody = Container(
+  //         color: Colors.orange,
+  //       );
+  //       break;
+  //     case 3:
+  //       _currentBody = Container(
+  //         color: Colors.red,
+  //       );
+  //       break;
+  //   }
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
+  // }
 
   List<BottomNavigationBarItem> _items() {
     return [
@@ -76,20 +134,18 @@ class _TabNavigation extends State<TabNavigation> {
 
   _bottomItem(String title, String normalIcon, String selectorIcon) {
     return BottomNavigationBarItem(
-      icon: Image.asset(
-        normalIcon,
-        width: 24,
-        height: 24,
-      ),
-      activeIcon: Image.asset(
-        selectorIcon,
-        width: 24,
-        height: 24,
-      ),
-      label: title
-    );
+        icon: Image.asset(
+          normalIcon,
+          width: 24,
+          height: 24,
+        ),
+        activeIcon: Image.asset(
+          selectorIcon,
+          width: 24,
+          height: 24,
+        ),
+        label: title);
   }
-
 
   Future<bool> _onWillPop() async {
     if (lastTime == null ||

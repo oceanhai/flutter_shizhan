@@ -34,6 +34,8 @@ dependencies:
   fluttertoast: ^8.0.9
   # 网络请求框架 推荐
   http: ^0.13.3
+  # 4.InheritedWidget的包装器 ，使它们更易于使用和更可重用。
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
