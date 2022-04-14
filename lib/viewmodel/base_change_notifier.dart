@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/widget/loading_state_widget.dart';
 
-class BaseChangeNotifier with ChangeNotifier{
+///这里 with和extends 都是可以的
+// class BaseChangeNotifier with ChangeNotifier{
+class BaseChangeNotifier extends ChangeNotifier{
 
   ViewState viewState = ViewState.loading;
 
