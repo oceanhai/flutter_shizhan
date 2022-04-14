@@ -36,6 +36,13 @@ dependencies:
   http: ^0.13.3
   # 4.InheritedWidget的包装器 ，使它们更易于使用和更可重用。
   provider: ^5.0.0
+  # 5.State Manager、Navigation Manager  =》路由？
+  # ^是指取大版本里最新的小版本 eg 4.x.x 下载的就是4的最新的版本
+  get: 4.2.4
+  # 6.banner左右滑动需要
+  flutter_swiper: ^1.1.6
+  # 7.图片扩展库
+  extended_image: ^4.1.0
 
 dev_dependencies:
   flutter_test:

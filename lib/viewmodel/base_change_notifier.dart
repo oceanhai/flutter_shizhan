@@ -1,8 +1,11 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_shizhan/widget/loading_state_widget.dart';
 
 class BaseChangeNotifier with ChangeNotifier{
+
+  ViewState viewState = ViewState.loading;
 
   //页面销毁则不发送通知
   bool _dispose = false;

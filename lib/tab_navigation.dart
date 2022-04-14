@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/config/string.dart';
+import 'package:flutter_shizhan/page/home/home_page.dart';
 import 'package:flutter_shizhan/utils/toast_util.dart';
 import 'package:flutter_shizhan/viewmodel/tab_navigation_viewmodel.dart';
 import 'package:flutter_shizhan/widget/provider_widget.dart';
@@ -36,9 +37,10 @@ class _TabNavigation extends State<TabNavigation> {
           controller: _pageController,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            Container(
-              color: Colors.blue,
-            ),
+            // Container(
+            //   color: Colors.blue,
+            // ),
+            HomePage(),
             Container(
               color: Colors.brown,
             ),
