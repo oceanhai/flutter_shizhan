@@ -22,9 +22,10 @@ class _HomeBodyPageState extends State<HomeBodyPage>
           return LoadingStateWidget(
             viewState: model.viewState,
             retry: model.retry,
-            child: Container(
-              color: Colors.blue,
-            ),
+            // child: Container(
+            //   color: Colors.blue,
+            // ),
+            child: _banner(model),
             // child: _banner(model),
           );
         });
