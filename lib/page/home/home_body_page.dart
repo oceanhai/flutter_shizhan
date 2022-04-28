@@ -1,35 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shizhan/model/common_item.dart';
+import 'package:flutter_shizhan/state/base_list_state.dart';
 import 'package:flutter_shizhan/viewmodel/home/home_page_viewmodel.dart';
 import 'package:flutter_shizhan/widget/home/banner_widget.dart';
+import 'package:flutter_shizhan/widget/list_item_widget.dart';
 import 'package:flutter_shizhan/widget/loading_state_widget.dart';
 import 'package:flutter_shizhan/widget/provider_widget.dart';
+
+const TEXT_HEADER_TYPE = 'textHeader';
 
 class HomeBodyPage extends StatefulWidget {
   @override
   _HomeBodyPageState createState() => _HomeBodyPageState();
 }
 
-class _HomeBodyPageState extends State<HomeBodyPage>
-    with AutomaticKeepAliveClientMixin {
+class _HomeBodyPageState
+    extends BaseListState<Item, HomePageViewModel, HomeBodyPage> {
+
+  // viewmodel 赋值
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return ProviderWidget<HomePageViewModel>(
-        model: HomePageViewModel(),
-        //TODO 数据初始化
-        onModelInit: (model) => model.refresh(),
-        builder: (context, model, child) {
-          return LoadingStateWidget(
-            viewState: model.viewState,
-            retry: model.retry,
-            // child: Container(
-            //   color: Colors.blue,
-            // ),
-            child: _banner(model),
-            // child: _banner(model),
-          );
-        });
+  HomePageViewModel get viewModel => HomePageViewModel();
+
+  @override
+  Widget getContentChild(HomePageViewModel model) {
+    // 带分隔线的 ListView
+    return ListView.separated(
+      itemCount: model.itemList.length,
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          return _banner(model);
+        } else {
+          if (model.itemList[index].type == TEXT_HEADER_TYPE) {
+            return _titleItem(model.itemList[index]);
+          }
+          return ListItemWidget(item: model.itemList[index]);
+        }
+      },
+      // 分割线设置
+      separatorBuilder: (context, index) {
+        return Padding(
+          padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+          // Divider:分割线
+          child: Divider(
+            height: model.itemList[index].type == TEXT_HEADER_TYPE || index == 0
+                ? 0
+                : 0.5,
+            color: model.itemList[index].type == TEXT_HEADER_TYPE || index == 0
+                ? Colors.transparent
+                : Color(0xffe6e6e6),
+          ),
+        );
+      },
+    );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   super.build(context);
+  //   return ProviderWidget<HomePageViewModel>(
+  //       model: HomePageViewModel(),
+  //       //TODO 数据初始化
+  //       onModelInit: (model) => model.refresh(),
+  //       builder: (context, model, child) {
+  //         return LoadingStateWidget(
+  //           viewState: model.viewState,
+  //           retry: model.retry,
+  //           // child: Container(
+  //           //   color: Colors.blue,
+  //           // ),
+  //           child: _banner(model),
+  //           // child: _banner(model),
+  //         );
+  //       });
+  // }
 
   _banner(model) {
     return Container(
@@ -43,6 +86,21 @@ class _HomeBodyPageState extends State<HomeBodyPage>
     );
   }
 
-  @override
-  bool get wantKeepAlive => true;
+  _titleItem(Item item) {
+    return Container(
+      decoration: BoxDecoration(color: Colors.white24),
+      padding: EdgeInsets.only(top: 15, bottom: 5),
+      child: Center(
+        child: Text(
+          item.data.text,
+          style: TextStyle(
+            //  bold:粗体
+              fontSize: 18,
+              color: Colors.black87,
+              fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+
 }
