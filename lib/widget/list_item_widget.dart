@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/model/common_item.dart';
 import 'package:flutter_shizhan/utils/cache_image.dart';
 import 'package:flutter_shizhan/utils/date_util.dart';
+import 'package:flutter_shizhan/utils/navigator_util.dart';
 import 'package:flutter_shizhan/utils/share_util.dart';
 
 class ListItemWidget extends StatelessWidget {
@@ -28,6 +29,7 @@ class ListItemWidget extends StatelessWidget {
           onTap: () {
             print('点击了,跳转详情页');
             // TODO:跳转详情页
+            toNamed("/detail", item.data);
           },
           child: Padding(
             padding: EdgeInsets.fromLTRB(15, 10, 15, 10),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_shizhan/app_init.dart';
 import 'package:flutter_shizhan/http/http_manager.dart';
+import 'package:flutter_shizhan/page/video/video_detail_page.dart';
 import 'package:flutter_shizhan/tab_navigation.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +72,8 @@ class _GetMaterialAppWidgetState extends State<GetMaterialAppWidget> {
       title: 'EyePetizer',
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: ()=>widget.child)
+        GetPage(name: '/', page: ()=>widget.child),
+        GetPage(name: '/detail', page: () => VideoDetailPage()),
       ],
     );
   }

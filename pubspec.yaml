@@ -49,6 +49,10 @@ dependencies:
   flustars: ^2.0.1
   # 10.分享
   share_plus: ^2.1.4
+  # 11.视频播放库
+  video_player: ^2.1.12
+  # 12.对 video_player库 进行了一层封装，便于上层使用
+  chewie: ^1.0.0
 
 dev_dependencies:
   flutter_test:
