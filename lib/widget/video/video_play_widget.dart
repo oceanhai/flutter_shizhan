@@ -89,6 +89,7 @@ class VideoPlayWidgetState extends State<VideoPlayWidget> {
       // 渐变背景色
       decoration: BoxDecoration(gradient: _blackLinearGradient(fromTop: true)),
       child: Row(
+        //两边 布局
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           BackButton(color: Colors.white),

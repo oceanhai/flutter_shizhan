@@ -361,6 +361,7 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget>
         padding: EdgeInsets.only(right: 15, left: 15),
         child: MaterialVideoProgressBar(
           controller,
+          //开始拖拽
           onDragStart: () {
             setState(() {
               _dragging = true;
@@ -368,6 +369,7 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget>
 
             _hideTimer?.cancel();
           },
+          //拖拽结束
           onDragEnd: () {
             setState(() {
               _dragging = false;
@@ -388,9 +390,11 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget>
 
   ///底部控制栏播放时间
   Widget _buildPosition(Color iconColor) {
+    //当前播放时长位置
     final position = _latestValue != null && _latestValue.position != null
         ? _latestValue.position
         : Duration.zero;
+    //视频的总时长
     final duration = _latestValue != null && _latestValue.duration != null
         ? _latestValue.duration
         : Duration.zero;
