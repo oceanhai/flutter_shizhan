@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/config/string.dart';
+import 'package:flutter_shizhan/page/discovery/discovery_page.dart';
 import 'package:flutter_shizhan/page/home/home_page.dart';
 import 'package:flutter_shizhan/utils/toast_util.dart';
 import 'package:flutter_shizhan/viewmodel/tab_navigation_viewmodel.dart';
@@ -41,9 +42,10 @@ class _TabNavigation extends State<TabNavigation> {
             //   color: Colors.blue,
             // ),
             HomePage(),
-            Container(
-              color: Colors.brown,
-            ),
+            DiscoveryPage(),
+            // Container(
+            //   color: Colors.brown,
+            // ),
             Container(
               color: Colors.orange,
             ),
