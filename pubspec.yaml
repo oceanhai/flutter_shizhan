@@ -55,6 +55,10 @@ dependencies:
   chewie: ^1.0.0
   # 13.常见动画库
   animations: ^2.0.1
+  # 14.允许展开和折叠文本
+  readmore: ^2.1.0
+  # 15.webView 插件
+  flutter_webview_plugin: ^0.4.0
 
 dev_dependencies:
   flutter_test:

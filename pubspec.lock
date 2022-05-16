@@ -170,6 +170,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_webview_plugin:
+    dependency: "direct main"
+    description:
+      name: flutter_webview_plugin
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.4.0"
   fluttertoast:
     dependency: "direct main"
     description:
@@ -331,6 +338,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.2.1"
+  readmore:
+    dependency: "direct main"
+    description:
+      name: readmore
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.1.0"
   share_plus:
     dependency: "direct main"
     description:

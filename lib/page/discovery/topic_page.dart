@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/model/discovery/topic_model.dart';
+import 'package:flutter_shizhan/page/discovery/topic_detail_page.dart';
 import 'package:flutter_shizhan/state/base_list_state.dart';
 import 'package:flutter_shizhan/utils/cache_image.dart';
 import 'package:flutter_shizhan/viewmodel/discovery/topic_page_viewmodel.dart';
@@ -21,10 +22,11 @@ class _TopicPageState
     itemBuilder: (context, index) {
       return OpenContainer(
         closedBuilder: (context, action) {
-          return _closedWidget(model.itemList[index]);
+          return _closedWidget(context, model.itemList[index]);
         },
         openBuilder: (context, action) {
-          return Container(color: Colors.blue);
+          // return Container(color: Colors.blue);
+          return TopicDetailPage(detailId: model.itemList[index].data.id);
         },
       );
     },
@@ -35,7 +37,7 @@ class _TopicPageState
     },
   );
 
-  Widget _closedWidget(item) {
+  Widget _closedWidget(context, item) {
     return Padding(
       padding: EdgeInsets.all(10),
       child: ClipRRect(

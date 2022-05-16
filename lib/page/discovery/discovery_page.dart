@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/config/string.dart';
 import 'package:flutter_shizhan/page/discovery/category_page.dart';
+import 'package:flutter_shizhan/page/discovery/news_page.dart';
 import 'package:flutter_shizhan/page/discovery/topic_page.dart';
 import 'package:flutter_shizhan/widget/app_bar.dart';
 import 'package:flutter_shizhan/widget/tab_bar.dart';
@@ -56,7 +57,7 @@ class _DiscoveryPageState extends State<DiscoveryPage>
           FollowPage(),
           CategoryPage(),
           TopicPage(),
-          Container(color: Colors.red),
+          NewsPage(),
           Container(color: Colors.grey),
         ],
       ),

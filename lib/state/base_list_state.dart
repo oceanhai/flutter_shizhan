@@ -15,9 +15,16 @@ abstract class BaseListState<L, M extends BaseListViewModel<L, PagingModel<L>>,
 
   Widget getContentChild(M model); //真实的分页控件
 
+  bool enablePullDown = true;
+  bool enablePullUp = true;
+
+  //可以重写init 来设置修改属性值
+  void init() {}
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    init();
     return ProviderWidget<M>(
         model: viewModel,
         onModelInit: (model) => model.refresh(),
@@ -31,7 +38,10 @@ abstract class BaseListState<L, M extends BaseListViewModel<L, PagingModel<L>>,
                 controller: model.refreshController,
                 onRefresh: model.refresh,
                 onLoading: model.loadMore,
-                enablePullUp: true,
+                //是否可以上拉加载
+                enablePullUp: enablePullUp,
+                //是否可以下拉刷新
+                enablePullDown: enablePullDown,
                 // 显示的界面
                 child: getContentChild(model),
               ),
