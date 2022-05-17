@@ -91,6 +91,7 @@ class _WebPageState extends State<WebPage> {
         style: TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
       ),
+      //居中
       centerTitle: true,
       backgroundColor: Colors.white,
       elevation: 0.0,
