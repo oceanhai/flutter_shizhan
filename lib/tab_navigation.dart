@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shizhan/config/string.dart';
 import 'package:flutter_shizhan/page/discovery/discovery_page.dart';
 import 'package:flutter_shizhan/page/home/home_page.dart';
+import 'package:flutter_shizhan/page/hot/hot_page.dart';
 import 'package:flutter_shizhan/utils/toast_util.dart';
 import 'package:flutter_shizhan/viewmodel/tab_navigation_viewmodel.dart';
 import 'package:flutter_shizhan/widget/provider_widget.dart';
@@ -42,13 +43,14 @@ class _TabNavigation extends State<TabNavigation> {
             //   color: Colors.blue,
             // ),
             HomePage(),
-            DiscoveryPage(),
             // Container(
             //   color: Colors.brown,
             // ),
-            Container(
-              color: Colors.orange,
-            ),
+            DiscoveryPage(),
+            // Container(
+            //   color: Colors.orange,
+            // ),
+            HotPage(),
             Container(
               color: Colors.red,
             ),
