@@ -4,6 +4,7 @@ import 'package:flutter_shizhan/config/string.dart';
 import 'package:flutter_shizhan/model/common_item.dart';
 import 'package:flutter_shizhan/utils/cache_image.dart';
 import 'package:flutter_shizhan/utils/date_util.dart';
+import 'package:flutter_shizhan/utils/history_repository.dart';
 import 'package:flutter_shizhan/utils/navigator_util.dart';
 import 'package:flutter_shizhan/viewmodel/video/video_detail_viewmodel.dart';
 import 'package:flutter_shizhan/widget/loading_state_widget.dart';
@@ -37,6 +38,9 @@ class _VideoDetailPageState extends State<VideoDetailPage>
     data = widget.videoDta == null ? arguments() : widget.videoDta;
     //监听页面可见与不可见状态
     WidgetsBinding.instance.addObserver(this);
+
+    //记录观看数据
+    HistoryRepository.saveWatchHistory(data);
   }
 
   @override
